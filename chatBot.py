@@ -3,6 +3,9 @@ from transformers import pipeline
 import ast
 
 
+MAX_NEW_TOKENS = 200
+
+os.environ['HF_HOME'] = "/nfs/home/abdati21/.cashe_transormers" # export HF_HOME=/nfs/home/abdati21/.cashe_transormers
 models = ["google/flan-t5-base", "google/bigbird-base-trivia-itc", "codellama/CodeLlama-7b-Python-hf"]
 
 CONTEXT = """Your name is AI.
@@ -16,13 +19,13 @@ You are an API to convert user’s text description of 3D objects into python co
 {{AI}}: forkObj.dimensions = [(forkObj.dimensions[0] / 2, forkObj.dimensions[1] / 2, forkObj.dimensions[2] / 2)| (forkObj.dimensions[0] * 1.5, forkObj.dimensions[1] * 1.5, forkObj.dimensions[2] * 1.5)|(forkObj.dimensions[0] * 2),forkObj.dimensions[1] * 2), forkObj.dimensions[2] * 2)]
 """
 def build_pipeline(model_name):
-    return pipeline("text-generation", model=model_name, device="cpu")
+    return pipeline("text-generation", model=model_name)
 def build_pipeline_from_dir(model_dir):
-    return pipeline("text-generation", model=model_dir, device="cpu")
+    return pipeline("text-generation", model=model_dir,max_new_tokens=MAX_NEW_TOKENS)
 
 class chatBot:
     def __init__(self):
-        self.context = ""
+        self.context = CONTEXT
         self.model_dir = "./app/saved_models"
         self.model_name = ""
         self.pipe = None
@@ -72,7 +75,7 @@ class chatBot:
         
         full_text = " ".join(self.conversation)
         
-        response = self.pipe(full_text, max_length=50, do_sample=False)
+        response = self.pipe(full_text, do_sample=False)
         
         self.conversation.append(response[0]["generated_text"])
         
@@ -100,4 +103,10 @@ class chatBot:
                 
             with open(file_path, "a") as f:
                 f.write(self.conversation[-1] + "\n")
+                
+# if __name__ == "__main__":
+#     a = chatBot()
+#     a.set_model(models[2])
+#     a.set_context(CONTEXT)
+#     print(a.chat("Hello, what's your name?"))
     
