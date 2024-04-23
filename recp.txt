@@ -1,0 +1,4 @@
+conda create --name AI python=3.10
+conda activate AI
+conda install pytorch torchvision torchaudio cpuonly -c pytorch
+pip install transformers accelerate

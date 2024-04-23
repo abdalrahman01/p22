@@ -1,0 +1,22 @@
+{
+    "internal": [
+        [
+            "<|BEGIN-VISIBLE-CHAT|>",
+            "I can help you generate 3D objects. *Only cups, spoons, knives, forks, and dishes*"
+        ],
+        [
+            "make it doll",
+            "**Sorry, I can Only make cups, spoons, knives, forks, and dishes**\n"
+        ]
+    ],
+    "visible": [
+        [
+            "",
+            "I can help you generate 3D objects. *Only cups, spoons, knives, forks, and dishes*"
+        ],
+        [
+            "make it doll",
+            "**Sorry, I can Only make cups, spoons, knives, forks, and dishes**\n"
+        ]
+    ]
+}

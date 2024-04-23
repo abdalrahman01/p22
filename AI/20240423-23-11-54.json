@@ -1,0 +1,46 @@
+{
+    "internal": [
+        [
+            "<|BEGIN-VISIBLE-CHAT|>",
+            "I can help you generate 3D objects. *Only cups, spoons, knives, forks, and dishes*"
+        ],
+        [
+            "make a spoon",
+            "spoonObj=spoon.SpoonFactory(0).spawn_asset()"
+        ],
+        [
+            "make it big",
+            "spoonObj.dimensions = (spoonObj.dimensions[0] * 2, spoonObj.dimensions[1] * 2, spoonObj.dimensions[2] * 2)"
+        ],
+        [
+            "make it green",
+            "spoonObj.color = (0,255,0,255)"
+        ],
+        [
+            "make a pone",
+            "poneObj=pone.PoneFactory(0).spawn_asset()"
+        ]
+    ],
+    "visible": [
+        [
+            "",
+            "I can help you generate 3D objects. *Only cups, spoons, knives, forks, and dishes*"
+        ],
+        [
+            "make a spoon",
+            "spoonObj=spoon.SpoonFactory(0).spawn_asset()"
+        ],
+        [
+            "make it big",
+            "spoonObj.dimensions = (spoonObj.dimensions[0] * 2, spoonObj.dimensions[1] * 2, spoonObj.dimensions[2] * 2)"
+        ],
+        [
+            "make it green",
+            "spoonObj.color = (0,255,0,255)"
+        ],
+        [
+            "make a pone",
+            "poneObj=pone.PoneFactory(0).spawn_asset()"
+        ]
+    ]
+}

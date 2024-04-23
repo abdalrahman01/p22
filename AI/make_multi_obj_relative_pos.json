@@ -1,0 +1,54 @@
+{
+    "internal": [
+        [
+            "<|BEGIN-VISIBLE-CHAT|>",
+            "I can help you generate 3D objects. *Only cups, spoons, knives, forks, and dishes*"
+        ],
+        [
+            "make a fork",
+            "forkObj = fork.ForkFactory(0).spawn_asset()"
+        ],
+        [
+            "make 4 cups",
+            "cupObjs = [cup.CupFactory(0).spawn_asset() for i in range(4)]"
+        ],
+        [
+            "make 2 of them to red and 2 to blue",
+            "cupObjs[0].color = (255,0,0,255)\ncupObjs[1].color = (255,0,0,255)\ncupObjs[2].color = (0,0,255,255)\ncupObjs[3].color = (0,0,255,255)"
+        ],
+        [
+            "make 3 forks",
+            "forkObjs = [fork.ForkFactory(0).spawn_asset() for i in range(3)]"
+        ],
+        [
+            "make one to the left and one to right",
+            "forkObjs[0].location[0] += forkObjs[0].dimensions[0] * 2\nforkObjs[1].location[0] -= forkObjs[1].dimensions[0] * 2"
+        ]
+    ],
+    "visible": [
+        [
+            "",
+            "I can help you generate 3D objects. *Only cups, spoons, knives, forks, and dishes*"
+        ],
+        [
+            "make a fork",
+            "forkObj = fork.ForkFactory(0).spawn_asset()"
+        ],
+        [
+            "make 4 cups",
+            "cupObjs = [cup.CupFactory(0).spawn_asset() for i in range(4)]"
+        ],
+        [
+            "make 2 of them to red and 2 to blue",
+            "cupObjs[0].color = (255,0,0,255)\ncupObjs[1].color = (255,0,0,255)\ncupObjs[2].color = (0,0,255,255)\ncupObjs[3].color = (0,0,255,255)"
+        ],
+        [
+            "make 3 forks",
+            "forkObjs = [fork.ForkFactory(0).spawn_asset() for i in range(3)]"
+        ],
+        [
+            "make one to the left and one to right",
+            "forkObjs[0].location[0] += forkObjs[0].dimensions[0] * 2\nforkObjs[1].location[0] -= forkObjs[1].dimensions[0] * 2"
+        ]
+    ]
+}
