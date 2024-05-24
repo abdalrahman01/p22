@@ -33,6 +33,8 @@ def select_character():
     time.sleep(1)
     driver.find_element(By.XPATH, dropdown_xpath).click()
     time.sleep(1)
+    driver.find_element(By.XPATH, dropdown_xpath).send_keys(Keys.CONTROL + "a")
+    driver.find_element(By.XPATH, dropdown_xpath).send_keys(Keys.BACKSPACE)
     driver.find_element(By.XPATH, dropdown_xpath).send_keys("AI")
     time.sleep(1)
     driver.find_element(By.XPATH, dropdown_xpath).send_keys(Keys.RETURN)
@@ -51,6 +53,8 @@ def select_model():
     time.sleep(1)
     driver.find_element(By.XPATH, listbox_xpath).click()
     time.sleep(1)
+    driver.find_element(By.XPATH, listbox_xpath).send_keys(Keys.CONTROL + "a")
+    driver.find_element(By.XPATH, listbox_xpath).send_keys(Keys.BACKSPACE)
     driver.find_element(By.XPATH, listbox_xpath).send_keys(model_name)
     time.sleep(1)
     driver.find_element(By.XPATH, listbox_xpath).send_keys(Keys.RETURN)
@@ -59,9 +63,9 @@ def select_model():
     cpu_span = driver.find_element(By.XPATH, '//*[@id="component-399"]/label')
     disk_span = driver.find_element(By.XPATH, '//*[@id="component-411"]/label')
     
-    cpu_span.click()
+    cpu_span.send_keys(Keys.RETURN)
     time.sleep(1)
-    disk_span.click()        
+    disk_span.send_keys(Keys.RETURN)     
     
     time.sleep(1)
     driver.find_element(By.ID, load_button_id).click()
@@ -178,7 +182,11 @@ def chat():
     return recv_chat()
 
 if __name__ == '__main__':
+    # driver = webdriver.Chrome(option)
+    # option = webdriver.FirefoxOptions()
+    # option.binary_location = "/home/atieh/school/p22/talk-with-text-generation-webui/geckodriver"
     driver = webdriver.Chrome(option)
+    
     driver.get(TEXT_GENERATION_WEBUI_URL)
     time.sleep(5)
     select_model()
