@@ -50,4 +50,6 @@ class BlenderPythonGenerator:
     def write_python(self, filename):
         with open(filename, "w") as f:
             f.write(self.generate())
+    def return_python(self):
+        return self.generate()
 

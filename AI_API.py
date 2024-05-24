@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import generate_python_base
 # from AI2 import AI
 
 PORT = 5001
@@ -14,6 +15,7 @@ TEXT_GENERATION_WEBUI_URL = "http://127.0.0.1:7860"
 
 app = Flask(__name__)
 
+python_code = generate_python_base.BlenderPythonGenerator()
 
 option = webdriver.ChromeOptions()
 option.binary_location = "./chrome-linux64/chrome"
@@ -63,9 +65,12 @@ def select_model():
     cpu_span = driver.find_element(By.XPATH, '//*[@id="component-399"]/label')
     disk_span = driver.find_element(By.XPATH, '//*[@id="component-411"]/label')
     
-    cpu_span.send_keys(Keys.RETURN)
+    if cpu_span.get_attribute("aria-checked") != "true":
+        cpu_span.send_keys(Keys.RETURN)
+         
     time.sleep(1)
-    disk_span.send_keys(Keys.RETURN)     
+    if disk_span.get_attribute("aria-checked") != "true":
+        disk_span.send_keys(Keys.RETURN)     
     
     time.sleep(1)
     driver.find_element(By.ID, load_button_id).click()
@@ -149,7 +154,8 @@ def recv_chat():
     elif num_msg < 2:
         return 'No message'
     try:
-        return  get_class_child_elements(masseges_area, "message")[-1].text
+        txt = get_class_child_elements(masseges_area, "message")[-1].text
+        return  txt[3:]
     except:
         return 'Error: txt not found'
 
@@ -166,8 +172,10 @@ def hello():
     return 'Hello, World!'
 
 @app.route('/start_new_chat')
-def start_new_chat():
-    return start_new_chat()
+def start_new():
+    python_code.reset()
+    start_new_chat()
+    return python_code.return_python()
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -178,15 +186,16 @@ def chat():
         wait_until_dots_disappear(driver)
     except:
         return 'try again!'
+    python_code.add_code(recv_chat())
     
-    return recv_chat()
+    
+    return python_code.return_python()
 
 if __name__ == '__main__':
     # driver = webdriver.Chrome(option)
     # option = webdriver.FirefoxOptions()
     # option.binary_location = "/home/atieh/school/p22/talk-with-text-generation-webui/geckodriver"
     driver = webdriver.Chrome(option)
-    
     driver.get(TEXT_GENERATION_WEBUI_URL)
     time.sleep(5)
     select_model()
@@ -194,5 +203,5 @@ if __name__ == '__main__':
     select_parameter()
     time.sleep(1)
     select_character()
-    app.run(port=5004, host=HOST)
+    app.run(port=5000, host=HOST)
     
