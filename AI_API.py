@@ -177,9 +177,13 @@ def start_new():
     start_new_chat()
     return python_code.return_python()
 
-@app.route('/chat', methods=['POST'])
+@app.route('/chat', methods=['GET', 'POST'])
 def chat():
-    text = request.get_json().get('text', '')
+    if request.method == 'GET':
+        text = request.args.get('text', '')
+    else:
+        text = request.get_json().get('text', '')
+    print("AI_API.py: text: ", text)
     send_chat(text)
     time.sleep(1)
     try:
