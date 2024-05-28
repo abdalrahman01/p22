@@ -17,9 +17,15 @@ bpy.context.scene.unit_settings.length_unit = "CENTIMETERS"
 bpy.context.scene.unit_settings.scale_length = 0.001
 bpy.ops.object.delete(use_global=False, confirm=False) # Clear Scene
 """
+# NOTE: use this if runing locally 
+# FOOTER="""bpy.ops.object.select_all(action='SELECT')
+# export_path = "/home/atieh/school/p43/p22_p43/public/models/generated_3d.gltf"
+# bpy.ops.export_scene.gltf(filepath=export_path)
+# """
 
+# NOTE: use this if runing in docker container
 FOOTER="""bpy.ops.object.select_all(action='SELECT')
-export_path = os.path.join(os.getcwd(), "/opt/public/models/generated_3d.gltf")
+export_path =  "/opt/public/models/generated_3d.gltf"
 bpy.ops.export_scene.gltf(filepath=export_path)
 """
 
